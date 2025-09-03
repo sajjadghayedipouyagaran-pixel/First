@@ -1,0 +1,37 @@
+name: Postman API Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  api_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    # ۱. دانلود کدهای ریپازیتوری
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # ۲. نصب Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*'
+
+    # ۳. نصب Newman و گزارشگر HTML
+    - name: Install Newman and Reporter
+      run: npm install -g newman newman-reporter-htmlextra
+
+    # ۴. اجرای تست‌ها
+    - name: Run Postman Collection
+      run: |
+        newman run collection.json -e env.json -r htmlextra --reporter-htmlextra-export report.html
+
+    # ۵. ذخیره و آپلود گزارش HTML
+    - name: Upload HTML report
+      uses: actions/upload-artifact@v4
+      with:
+        name: postman-report
+        path: report.html
