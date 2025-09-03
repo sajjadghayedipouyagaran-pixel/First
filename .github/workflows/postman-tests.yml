@@ -2,7 +2,7 @@ name: Postman API Tests
 
 on:
   push:
-    branches:
+    paths:
       - 'FakeAPIstore.postman_collection.json'
 
 jobs:
