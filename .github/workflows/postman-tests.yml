@@ -27,7 +27,7 @@ jobs:
     # ۴. اجرای تست‌ها
     - name: Run Postman Collection
       run: |
-        newman run collection.json -e env.json -r htmlextra --reporter-htmlextra-export report.html
+        newman run FakeAPIstore.postman_collection.json -e stage.fakeStore.postman_environment.json -r htmlextra --reporter-htmlextra-export report.html
 
     # ۵. ذخیره و آپلود گزارش HTML
     - name: Upload HTML report
