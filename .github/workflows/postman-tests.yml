@@ -3,7 +3,7 @@ name: Postman API Tests
 on:
   push:
     branches:
-      - main
+      FakeAPIstore.postman_collection.json
 
 jobs:
   api_tests:
